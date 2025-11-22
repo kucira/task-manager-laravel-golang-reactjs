@@ -9,10 +9,10 @@ import (
 )
 
 func GetDataTasks(c *gin.Context) {
-	tasks, err := services.GetTasks()
+	tasks, pagination, err := services.GetTasks(c)
 	if err != nil {
 		models.ErrorResponse(c, http.StatusInternalServerError, "Something wrong", err)
 		return
 	}
-	models.SuccessResponse(c, http.StatusOK, tasks)
+	models.SuccessResponse(c, http.StatusOK, tasks, pagination)
 }

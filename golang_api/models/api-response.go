@@ -7,13 +7,15 @@ type APIResponse struct {
 	Message string      `json:"message"`
 	Data    interface{} `json:"data,omitempty"`  // Data returned on success, omitted if empty
 	Error   interface{} `json:"error,omitempty"` // Specific error info on failure, omitted if empty
+	Meta    interface{} `json:"meta,omitempty"`
 }
 
-func SuccessResponse(c *gin.Context, code int, data interface{}) {
+func SuccessResponse(c *gin.Context, code int, data interface{}, meta interface{}) {
 	c.JSON(code, APIResponse{
 		Code:    code,
 		Message: "success",
 		Data:    data,
+		Meta:    meta,
 	})
 }
 
